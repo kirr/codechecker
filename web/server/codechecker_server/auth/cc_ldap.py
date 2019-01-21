@@ -304,7 +304,7 @@ def auth_user(ldap_config, username=None, credentials=None):
     # Service user is not configured try to authenticate
     # with the given username and credentials.
     if not service_user:
-        service_user = username
+        service_user = username + '@ld.yandex.ru'
         service_cred = credentials
 
     LOG.debug("Creating SERVICE connection...")
@@ -360,7 +360,7 @@ def get_groups(ldap_config, username, credentials):
     service_user = ldap_config.get('username')
     service_cred = ldap_config.get('password')
     if not service_user:
-        service_user = username
+        service_user = username + '@ld.yandex.ru'
         service_cred = credentials
 
     LOG.debug("creating LDAP connection. service user %s", service_user)

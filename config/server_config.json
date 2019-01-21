@@ -8,30 +8,30 @@
     }
   },
   "authentication": {
-    "enabled" : false,
+    "enabled" : true,
     "realm_name" : "CodeChecker Privileged server",
     "realm_error" : "Access requires valid credentials.",
     "session_lifetime" : 300,
     "refresh_time" : 60,
     "logins_until_cleanup" : 30,
     "method_dictionary": {
-      "enabled" : false,
-      "auths" : [],
-      "groups" : {}
+      "enabled" : true,
+      "auths" : ["guest:guest", "admin:admin"],
+      "groups" : {"guest": ["guest"], "admin": ["admin"]}
     },
     "method_ldap": {
-      "enabled" : false,
+      "enabled" : true,
       "authorities": [
         {
-          "connection_url" : "ldap://ldap.example.org",
+          "connection_url" : "ldaps://addc.yandex-team.ru",
           "username" : null,
           "password" : null,
           "referrals" : false,
           "deref" : "always",
-          "accountBase" : null,
+          "accountBase" : "dc=ld,dc=yandex,dc=ru",
           "accountScope" : "subtree",
           "accountPattern" : "(&(objectClass=person)(sAMAccountName=$USN$))",
-          "groupBase" : null,
+          "groupBase" : "dc=ld,dc=yandex,dc=ru",
           "groupScope" : "subtree",
           "groupPattern" : "(&(objectClass=group)(member=$USERDN$))",
           "groupNameAttr" : "sAMAccountName"

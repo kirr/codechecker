@@ -114,7 +114,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
         else:
             # If the user's access cookie is no longer usable (invalid),
             # present an error.
-            client_host, client_port = self.client_address
+            client_host, client_port = self.client_address[:2]
             LOG.debug(client_host + ":" + str(client_port) +
                       " Invalid access, credentials not found " +
                       "- session refused.")
@@ -311,7 +311,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
         Handles POST queries, which are usually Thrift messages.
         """
 
-        client_host, client_port = self.client_address
+        client_host, client_port = self.client_address[:2]
         self.auth_session = self.__check_session_cookie()
         LOG.info("%s:%s -- [%s] POST %s", client_host, str(client_port),
                  self.auth_session.user if self.auth_session else "Anonymous",
@@ -654,6 +654,7 @@ class CCSimpleHttpServer(HTTPServer):
     """
 
     daemon_threads = False
+    address_family = socket.AF_INET6
 
     def __init__(self,
                  server_address,
