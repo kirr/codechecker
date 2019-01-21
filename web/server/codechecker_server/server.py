@@ -154,18 +154,18 @@ class RequestHandler(SimpleHTTPRequestHandler):
 
         product_endpoint, path = routing.split_client_GET_request(self.path)
 
-        if self.server.manager.is_enabled and not self.auth_session \
-                and routing.is_protected_GET_entrypoint(path):
-            # If necessary, prompt the user for authentication.
-            returnto = '?returnto=' + urllib.quote_plus(self.path.lstrip('/'))\
-                if self.path != '/' else ''
+        # if self.server.manager.is_enabled and not self.auth_session \
+                # and routing.is_protected_GET_entrypoint(path):
+            # # If necessary, prompt the user for authentication.
+            # returnto = '?returnto=' + urllib.quote_plus(self.path.lstrip('/'))\
+                # if self.path != '/' else ''
 
-            self.send_response(307)  # 307 Temporary Redirect
-            self.send_header('Location', '/login.html' + returnto)
-            self.send_header('Connection', 'close')
-            self.end_headers()
-            self.wfile.write('')
-            return
+            # self.send_response(307)  # 307 Temporary Redirect
+            # self.send_header('Location', '/login.html' + returnto)
+            # self.send_header('Connection', 'close')
+            # self.end_headers()
+            # self.wfile.write('')
+            # return
 
         if product_endpoint is not None and product_endpoint != '':
             # Route the user if there is a product endpoint in the request.
@@ -336,17 +336,17 @@ class RequestHandler(SimpleHTTPRequestHandler):
         iprot = input_protocol_factory.getProtocol(itrans)
         oprot = output_protocol_factory.getProtocol(otrans)
 
-        if self.server.manager.is_enabled and \
-                not self.path.endswith(('/Authentication',
-                                        '/Configuration')) and \
-                not self.auth_session:
-            # Bail out if the user is not authenticated...
-            # This response has the possibility of melting down Thrift clients,
-            # but the user is expected to properly authenticate first.
-            LOG.debug("%s:%s Invalid access, credentials not found "
-                      "- session refused.", client_host, str(client_port))
-            self.send_error(401)
-            return
+        # if self.server.manager.is_enabled and \
+                # not self.path.endswith(('/Authentication',
+                                        # '/Configuration')) and \
+                # not self.auth_session:
+            # # Bail out if the user is not authenticated...
+            # # This response has the possibility of melting down Thrift clients,
+            # # but the user is expected to properly authenticate first.
+            # LOG.debug("%s:%s Invalid access, credentials not found "
+                      # "- session refused.", client_host, str(client_port))
+            # self.send_error(401)
+            # return
 
         # Authentication is handled, we may now respond to the user.
         try:

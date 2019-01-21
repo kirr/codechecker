@@ -213,7 +213,8 @@ class PermissionHandler(object):
             # If the user does not have an auth_session it means it is a guest
             # and the server is running in authentication disabled mode.
             # All permissions are automatically granted in this case.
-            return True
+            return self._perm_name == 'PRODUCT_ACCESS'
+
         elif auth_session.is_root and self._perm_name == 'SUPERUSER':
             # The special master superuser (root) automatically has the
             # SUPERUSER permission.
