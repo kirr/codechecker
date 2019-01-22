@@ -18,7 +18,7 @@ from codechecker_web.shared.version import SUPPORTED_VERSIONS
 # A list of top-level path elements under the webserver root
 # which should not be considered as a product route.
 NON_PRODUCT_ENDPOINTS = ['index.html',
-                         'login.html',
+                         'login_.html',
                          'products.html',
                          'fonts',
                          'images',

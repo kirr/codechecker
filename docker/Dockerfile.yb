@@ -17,6 +17,8 @@ RUN apt-get update \
        doxygen \
        gcc-multilib \
        git \
+       rsync \
+       telnet \
        python-pip \
        python-virtualenv \
        python-dev \
